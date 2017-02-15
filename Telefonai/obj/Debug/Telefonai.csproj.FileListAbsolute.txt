@@ -1,1 +1,2 @@
 C:\Dirbam\KCS\Telefonai\Telefonai\bin\Debug\Telefonai.exe.config
+C:\Users\xeval\Desktop\projektas\telefonas\Telefonai\bin\Debug\Telefonai.exe.config

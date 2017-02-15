@@ -6,7 +6,41 @@ using System.Threading.Tasks;
 
 namespace Telefonai
 {
-    class Program
+    class naujastelefonas
+    {
+        public string forma { get; private set; }
+        public string parametrai { get; private set; }
+        public string operacinesistema { get; private set; }
+        public naujastelefonas() { }
+        public naujastelefonas(string forma, string parametrai, string operacinesistema)
+        {
+            this.forma = forma;
+            this.parametrai = parametrai;
+            this.operacinesistema = operacinesistema;
+
+        }
+    }
+    class Forma
+    {
+        public string islenktas { get; set; }
+        public string lankstomas { get; set; }
+        public string superplonas { get; set; }
+        public Forma() { }
+        public Forma(string islenktas, string lankstomas, string superplonas)
+        {
+            this.islenktas = islenktas;
+            this.lankstomas = lankstomas;
+            this.superplonas = superplonas;
+
+        }
+
+        public string fromosgeneratorius(int variantas)
+        {
+            string[] telefonoforma = { "Islenktas", "Lankstomas", "Super Plonas" };
+
+        }
+
+        class Program
     {
         static void Main(string[] args)
         {
