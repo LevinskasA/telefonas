@@ -8,16 +8,21 @@ namespace Telefonai
 {
     class naujastelefonas
     {
-        public string forma { get; private set; }
-        public string parametrai { get; private set; }
-        public string operacinesistema { get; private set; }
+        public Forma forma { get; private set; }
+        public Parametrai parametrai { get; private set; }
+        public OperacineSistema operacinesistema { get; private set; }
         public naujastelefonas() { }
-        public naujastelefonas(string forma, string parametrai, string operacinesistema)
+        public naujastelefonas(Forma forma, Parametrai parametrai, OperacineSistema operacinesistema)
         {
             this.forma = forma;
             this.parametrai = parametrai;
             this.operacinesistema = operacinesistema;
 
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}\n{1}{2}", forma.ToString(), parametrai.ToString(), operacinesistema.ToString());
         }
     }
     class Forma
@@ -26,7 +31,7 @@ namespace Telefonai
 
         public Forma(string forma)
         {
-
+            this.forma = forma;
         }
 
 
@@ -46,32 +51,47 @@ namespace Telefonai
 
 
         }
+
+        public override string ToString()
+        {
+            return String.Format("Forma: {0}", forma);
+        }
     }
     class Program
     {
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.GeneruotiTelefona();
+            //p.GeneruotiTelefona();
+            Console.WriteLine(p.GeneruotiTelefona().ToString());
         }
 
         naujastelefonas GeneruotiTelefona()
         {
             // forma
-
+            Forma forma = new Forma("Apvali");
             // parametrai
-
+            Parametrai param = GeneruotiParam();
             // os
             OperacineSistema oS = GeneruotiOS();
             //returnui
-            naujastelefonas telefonas = new naujastelefonas();
+            naujastelefonas telefonas = new naujastelefonas(forma, param, oS);
             return telefonas;
+        }
+
+        Parametrai GeneruotiParam()
+        {
+            Random rnd = new Random();
+            double procesorius = rnd.Next(Konstantos.PROC_MIN, Konstantos.PROC_MAX) / 10.0;
+            double istrizaine = rnd.Next(Konstantos.ISTRIZAINE_MIN, Konstantos.ISTRIZAINE_MAX) / 10.0;
+            Parametrai param = new Parametrai(procesorius, istrizaine);
+            return param;
         }
 
         OperacineSistema GeneruotiOS()
         {
             Random rnd = new Random();
-            OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1, Konstantos.OS_VARIANTAI)));
+            OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1, Konstantos.OS_VARIANTAI + 1)));
             return oS;
         }
 
@@ -117,12 +137,20 @@ namespace Telefonai
             Procesorius = procesorius;
             Istrizaine = istrizaine;
         }
+
+        public override string ToString()
+        {
+            return String.Format("Procesoriaus dažnis: {0} GHz\nĮstrižainė: {1} coliai\n", Procesorius, Istrizaine);
+        }
     }
 
     public class Konstantos
     {
         public const int OS_VARIANTAI = 3;
         public const int frm = 3;
-
+        public const int PROC_MIN = 10;
+        public const int PROC_MAX = 45;
+        public const int ISTRIZAINE_MIN = 40;
+        public const int ISTRIZAINE_MAX = 60;
     }
 }
