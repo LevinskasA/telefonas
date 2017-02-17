@@ -35,17 +35,17 @@ namespace Telefonai
         }
 
 
-        Forma generuoklis()
+    static  public  Forma generuoklis()
         {
             Random rd = new Random();
-            Forma gk = new Forma(Forma.formosgeneratorius(rd.Next(1, Konstantos.frm)));
+            Forma gk = new Forma(Forma.formosgeneratorius(rd.Next(1, Konstantos.frm+1)));
             return gk;
         }
 
         public static string formosgeneratorius(int variantas)
         {
 
-            string[] telefonoforma = { "Islenktas", "Lankstomas", "Super Plonas" };
+            string[] telefonoforma = { "Tik ekranas", "Su skaičių klaviatūra", "Su pilna klaviatūra" };
             return telefonoforma[variantas - 1];
 
 
@@ -69,7 +69,7 @@ namespace Telefonai
         naujastelefonas GeneruotiTelefona()
         {
             // forma
-            Forma forma = new Forma("Apvali");
+            Forma forma = Forma.generuoklis();
             // parametrai
             Parametrai param = GeneruotiParam();
             // os
@@ -78,6 +78,7 @@ namespace Telefonai
             naujastelefonas telefonas = new naujastelefonas(forma, param, oS);
             return telefonas;
         }
+       
 
         Parametrai GeneruotiParam()
         {
