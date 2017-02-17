@@ -23,19 +23,20 @@ namespace Telefonai
     class Forma
     {
         public string forma { get; set; }
-       
-        public Forma(string forma) {
+
+        public Forma(string forma)
+        {
 
         }
-      
-        
+
+
         Forma generuoklis()
         {
             Random rd = new Random();
             Forma gk = new Forma(Forma.formosgeneratorius(rd.Next(1, Konstantos.frm)));
             return gk;
         }
-        
+
         public static string formosgeneratorius(int variantas)
         {
 
@@ -45,69 +46,83 @@ namespace Telefonai
 
 
         }
-
-        class Program
+    }
+    class Program
+    {
+        static void Main(string[] args)
         {
-            
-            static void Main(string[] args)
-            {
-                Program programa = new Program();
-               gener = programa.generuotiOS();
-                Console.WriteLine(gener);
-
-            }
-
-           // naujastelefonas generuotiTelefona()
-            {
-                // forma
-                // parametrai
-             //   OperacineSistema oS = generuotiOS();
-              //  return;
-            }
-
-            OperacineSistema generuotiOS()
-            {
-                Random rnd = new Random();
-                OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1, Konstantos.OS_VARIANTAI)));
-                return oS;
-            }
-
+            Program p = new Program();
+            p.GeneruotiTelefona();
         }
 
-        class OperacineSistema
+        naujastelefonas GeneruotiTelefona()
         {
-            public string Pavadinimas { get; private set; }
+            // forma
 
-            public OperacineSistema(string pavadinimas)
-            {
-                Pavadinimas = pavadinimas;
+            // parametrai
 
-            }
-            /// <summary>
-            /// Grazina paprasyta OS varianta.
-            /// </summary>
-            /// <param name="variantas"></param>
-            /// <returns></returns>
-            public static string GetVarianta(int variantas)
-            {
-                string[] oSVariantai = { "Android", "Apple iOS", "Windows" };
-                return oSVariantai[variantas - 1];
-            }
+            // os
+            OperacineSistema oS = GeneruotiOS();
+            //returnui
+            naujastelefonas telefonas = new naujastelefonas();
+            return telefonas;
         }
 
-        class Parametrai
+        OperacineSistema GeneruotiOS()
         {
-
+            Random rnd = new Random();
+            OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1, Konstantos.OS_VARIANTAI)));
+            return oS;
         }
 
-        public class Konstantos
+        void IsvestiTelefonaKonsolen(naujastelefonas telefonas)
         {
-            public const int OS_VARIANTAI = 3;
-            public const int frm = 3;
-            
+            Console.WriteLine();
+        }
+    }
 
+    class OperacineSistema
+    {
+        public string Pavadinimas { get; private set; }
+
+        public OperacineSistema(string pavadinimas)
+        {
+            Pavadinimas = pavadinimas;
 
         }
-        
+        /// <summary>
+        /// Grazina paprasyta OS varianta.
+        /// </summary>
+        /// <param name="variantas"></param>
+        /// <returns></returns>
+        public static string GetVarianta(int variantas)
+        {
+            string[] oSVariantai = { "Android", "Apple iOS", "Windows" };
+            return oSVariantai[variantas - 1];
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}", Pavadinimas);
+        }
+    }
+
+    class Parametrai
+    {
+        public double Procesorius { get; private set; }
+        public double Istrizaine { get; private set; }
+
+        public Parametrai(double procesorius, double istrizaine)
+        {
+            Procesorius = procesorius;
+            Istrizaine = istrizaine;
+        }
+    }
+
+    public class Konstantos
+    {
+        public const int OS_VARIANTAI = 3;
+        public const int frm = 3;
+
     }
 }
