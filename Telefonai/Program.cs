@@ -22,75 +22,92 @@ namespace Telefonai
     }
     class Forma
     {
-        public string islenktas { get; set; }
-        public string lankstomas { get; set; }
-        public string superplonas { get; set; }
-        public Forma() { }
-        public Forma(string islenktas, string lankstomas, string superplonas)
-        {
-            this.islenktas = islenktas;
-            this.lankstomas = lankstomas;
-            this.superplonas = superplonas;
+        public string forma { get; set; }
+       
+        public Forma(string forma) {
 
         }
-
-        public string fromosgeneratorius(int variantas)
+      
+        
+        Forma generuoklis()
         {
+            Random rd = new Random();
+            Forma gk = new Forma(Forma.formosgeneratorius(rd.Next(1, Konstantos.frm)));
+            return gk;
+        }
+        
+        public static string formosgeneratorius(int variantas)
+        {
+
             string[] telefonoforma = { "Islenktas", "Lankstomas", "Super Plonas" };
+            return telefonoforma[variantas - 1];
+
+
 
         }
 
         class Program
-    {
-        static void Main(string[] args)
+        {
+            
+            static void Main(string[] args)
+            {
+                Program programa = new Program();
+               gener = programa.generuotiOS();
+                Console.WriteLine(gener);
+
+            }
+
+           // naujastelefonas generuotiTelefona()
+            {
+                // forma
+                // parametrai
+             //   OperacineSistema oS = generuotiOS();
+              //  return;
+            }
+
+            OperacineSistema generuotiOS()
+            {
+                Random rnd = new Random();
+                OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1, Konstantos.OS_VARIANTAI)));
+                return oS;
+            }
+
+        }
+
+        class OperacineSistema
+        {
+            public string Pavadinimas { get; private set; }
+
+            public OperacineSistema(string pavadinimas)
+            {
+                Pavadinimas = pavadinimas;
+
+            }
+            /// <summary>
+            /// Grazina paprasyta OS varianta.
+            /// </summary>
+            /// <param name="variantas"></param>
+            /// <returns></returns>
+            public static string GetVarianta(int variantas)
+            {
+                string[] oSVariantai = { "Android", "Apple iOS", "Windows" };
+                return oSVariantai[variantas - 1];
+            }
+        }
+
+        class Parametrai
         {
 
         }
 
-        Telefonas generuotiTelefona()
+        public class Konstantos
         {
-            // forma
-            // parametrai
-            OperacineSistema oS = generuotiOS();
-        }
+            public const int OS_VARIANTAI = 3;
+            public const int frm = 3;
+            
 
-        OperacineSistema generuotiOS()
-        {
-            Random rnd = new Random();
-            OperacineSistema oS = new OperacineSistema(OperacineSistema.GetVarianta(rnd.Next(1,Konstantos.OS_VARIANTAI)));
-            return oS;
+
         }
         
-    }
-
-    class OperacineSistema
-    {
-        public string Pavadinimas { get; private set; }
-
-        public OperacineSistema(string pavadinimas)
-        {
-            Pavadinimas = pavadinimas;
-
-        }
-        /// <summary>
-        /// Grazina paprasyta OS varianta.
-        /// </summary>
-        /// <param name="variantas"></param>
-        /// <returns></returns>
-        public static string GetVarianta(int variantas)
-        {
-            string[] oSVariantai = { "Android","Apple iOS","Windows" };
-            return oSVariantai[variantas-1];
-        }
-    }
-
-    class Parametrai
-    {
-
-    }
-
-    public class Konstantos
-    {
-        public const int OS_VARIANTAI = 3;
     }
 }
